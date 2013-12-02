@@ -144,6 +144,8 @@ Debug压缩后的代码是非常困难的，所以部分压缩工具提供了Sou
 
 _来源：[https://github.com/ryanseddon/source-map/wiki/Source-maps%3A-languages,-tools-and-other-info](https://github.com/ryanseddon/source-map/wiki/Source-maps%3A-languages,-tools-and-other-info)_
 
+[关于如何使用Source Map](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)
+
 ####4.5 自动化压缩脚本
 
 UglifyJS 2已经使用npm来管理，所以植入我们的编译过程是最方便直接的，郑晓俊已经实现这部分代码。JS Min也有其[npm版本](https://github.com/twolfson/node-jsmin-sourcemap)。
