@@ -60,7 +60,7 @@ _2013年11月29号<br/>凌华彬 - Cocos2d-HTML5引擎组_
 * Closure Compiler
 > 开发语言：JAVA<br/>
 > Google Code页面：https://code.google.com/p/closure-compiler/<br/>
-> 维护状况：和UglifyJS一样热度非常高。
+> 维护状况：和UglifyJS一样热度非常高。[Commits list](https://code.google.com/p/closure-compiler/source/list)
 
 * YUI Compressor
 > 开发语言：JAVA<br/>
@@ -113,7 +113,32 @@ Closure Compiler没有原生条件编译支持，但是可以通过一些方式�
 Debug压缩后的代码是非常困难的，所以部分压缩工具提供了Source Map特性，Source Map可以显示压缩后代码对源代码的映射。下面是提供Source Map特性的压缩工具：
 
 * Closure Compiler: [API](https://developers.google.com/closure/compiler/docs/inspector)
+> 用命令行编译，只需要加上`--create_source_map [output file 路径]`即可：
+>
+		$ java -jar compiler.jar --js example.js --create_source_map ./example-map --js_output_file example-compiled.js
+>
+> 用Ant编译，需要在build.xml中的jscomp节点加上`sourceMapOutputFile`和`sourceMapFormat`两个属性：
+>
+		<target name="compile_test">
+        	<jscomp compilationLevel="simple" warning="quiet"
+                	debug="false" output="cocos2d-html5-testcases.js" 
+                	sourceMapOutputFile="sourcemap" 
+                	sourceMapFormat="V3">
+            ...
+            </jscomp>
+        </target>
+> [Reference](https://code.google.com/p/closure-compiler/issues/detail?id=922)<br/>
+> [Source Code Reference](https://code.google.com/p/closure-compiler/source/browse/src/com/google/javascript/jscomp/ant/CompileTask.java)
+
 * UglifyJS 2: [API](https://github.com/mishoo/UglifyJS2#source-map-options)
+> 用命令行编译，只需要加上`--source-map [output file 路径]`即可：
+>
+		$ uglifyjs example.js --source-map ./example-map -o example.min.js
+> 当源文件是其他压缩工具压缩过的文件时，基于这个压缩过文件使用UglifyJS再压缩的话，直接生成source map是没有什么意义的，但是UglifyJS支持读入一个入口source map并直接生成正确可用的source map。这个特性需要用到`--in-source-map`属性
+>
+		$ uglifyjs example.gc.js --in-source-map ./gc.map --source-map ./final.map -o example.min.js
+
+
 * JS Packer Ruby Version: [API](https://github.com/jcoglan/packr#bundling-and-source-maps)
 * JS Min NodeJS Version: [API](https://github.com/twolfson/node-jsmin-sourcemap)
 
