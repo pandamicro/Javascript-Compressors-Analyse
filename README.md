@@ -115,7 +115,7 @@ UglifyJS 2已经使用npm来管理，所以植入我们的编译过程是最方�
 
 Closure Compiler和YUI Compressor是JAVA程序，编译时必须提前拷贝对应的jar程序到项目目录下。
 
-JS Min和JS Packer都可以编译为命令行版本，不过也同样需要被包含再项目目录下才能实现自动化压缩。
+JS Min和JS Packer都可以编译为命令行版本，不过也同样需要被包含在项目目录下才能实现自动化压缩。
 
 对于部分工具比如Closure Compiler，也可以在编译时访问它的WEB API来进行压缩，不过由于访问时间过于长，这种方案并不提倡。
 
@@ -147,4 +147,4 @@ ex:
 	
 这种情况下，即便ParticleBatchNode从未被使用，这部分代码也将被保留在压缩后版本中，不论Basic Mode还是Advanced Mode。这是因为cc是全局变量，而Closure Compiler是不会剔除全局变量以及其属性或方法的。Closure Compiler根据依赖判定来去除代码主要还是局限在较小的scope中。
 
-不过这不重要，由于Cocos2d-HTML5将使用npm来管理项目，我们的子模块也会被分割出来，那么用户完全可以根据自己的需求来选择需要的模块或第三方程序包，不需要压缩工具来越俎代庖。
+代码逻辑压缩方面，在模块纬度上，由于Cocos2d-HTML5将使用npm来管理项目，我们的子模块也会被分割出来，那么用户可以根据自己的需求来选择需要的模块或第三方程序包。在代码细节纬度上，我们仍可以在代码风格上更贴近Closure Compiler的压缩习惯，依赖Closure Compiler的压缩能力结合条件编译来优化压缩结果。关于Closure Compiler Advanced Mode的压缩细节，可以参考：[https://developers.google.com/closure/compiler/docs/api-tutorial3](https://developers.google.com/closure/compiler/docs/api-tutorial3)
