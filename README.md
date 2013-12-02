@@ -69,7 +69,7 @@ _2013年11月29号<br/>凌华彬 - Cocos2d-HTML5引擎组_
 
 * JS Packer
 > 开发语言：PHP，Perl...<br/>
-> 维护状况：停止维护，不同平台版本由不同开发者移植。
+> 维护状况：原始版本已经停止维护，不同平台版本由不同开发者移植。
 
 * JS Min
 > 开发语言：C<br/>
@@ -108,10 +108,20 @@ Closure Compiler没有原生条件编译支持，但是可以通过一些方式�
 
 其他的压缩工具并不具有条件编译能力。
 
+####4.4 Source Map
 
-####4.4 自动化压缩脚本
+Debug压缩后的代码是非常困难的，所以部分压缩工具提供了Source Map特性，Source Map可以显示压缩后代码对源代码的映射。下面是提供Source Map特性的压缩工具：
 
-UglifyJS 2已经使用npm来管理，所以植入我们的编译过程是最方便直接的，郑晓俊已经实现这部分代码。
+* Closure Compiler: [API](https://developers.google.com/closure/compiler/docs/inspector)
+* UglifyJS 2: [API](https://github.com/mishoo/UglifyJS2#source-map-options)
+* JS Packer Ruby Version: [API](https://github.com/jcoglan/packr#bundling-and-source-maps)
+* JS Min NodeJS Version: [API](https://github.com/twolfson/node-jsmin-sourcemap)
+
+_来源：[https://github.com/ryanseddon/source-map/wiki/Source-maps%3A-languages,-tools-and-other-info](https://github.com/ryanseddon/source-map/wiki/Source-maps%3A-languages,-tools-and-other-info)_
+
+####4.5 自动化压缩脚本
+
+UglifyJS 2已经使用npm来管理，所以植入我们的编译过程是最方便直接的，郑晓俊已经实现这部分代码。JS Min也有其[npm版本](https://github.com/twolfson/node-jsmin-sourcemap)。
 
 Closure Compiler和YUI Compressor是JAVA程序，编译时必须提前拷贝对应的jar程序到项目目录下。
 
